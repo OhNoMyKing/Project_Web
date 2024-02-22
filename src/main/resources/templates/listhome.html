@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách nhà</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h3>Danh sách tòa nhà</h3>
+    <hr/>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-info">
+        <tr>
+            <td>
+                ID
+            </td>
+            <td>
+                Loại sản phẩm
+            </td>
+            <td>
+                Loại Dịch Vụ
+            </td>
+            <td>
+                Thành Phố
+            </td>
+            <td>
+                Tên
+            </td>
+            <td>
+                Giá Tiền
+            </td>
+            <td>
+                Số Phòng
+            </td>
+            <td>Xử lý</td>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="list: ${home}">
+            <td th:text="${list.id}"></td>
+            <td th:text="${list.listingtypes}"></td>
+            <td th:text="${list.offertype}"></td>
+            <td th:text="${list.selectcity}"></td>
+            <td th:text="${list.ten}"></td>
+            <td th:text="${list.giatien}"></td>
+            <td th:text="${list.sophong}"></td>
+            <td>
+                <a th:href="@{/api/home/toadd}" class="btn btn-success btn-sm ">Thêm</a>
+                <a th:href="@{/api/home/update(id=${list.id})}" class="btn btn-info btn-sm">
+                    Chỉnh Sửa
+                </a>
+
+                <a th:href="@{/api/home/delete(id=${list.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa hay không ?');">
+                    Xóa
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/api/home/index" class="btn btn-primary">Thoát</a>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
